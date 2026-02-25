@@ -1,10 +1,13 @@
+from io import open
+
 # ── Rutas ──────────────────────────────────────────────────────────────────
 # APP_DIR: Path          # directorio del ejecutable
 # DATA_DIR: Path         # datos persistentes (JSON, logs)
-# ARENA_JSON: Path       # games data para Arena
-# RACING_JSON: Path      # games data para Racing
-# COLA_JSON: Path        # datos de máquinas y colas
-# LOG_PATH: Path         # archivo de log
+ARENA_JSON: "arena/arena.json"       # games data para Arena
+RACING_JSON: "racing/racing.json"      # games data para Racing
+COLA_JSON: "cola/cola.json"        # datos de máquinas y colas
+LOG_PATH: "logs/log.log"         # archivo de log
+JUEGOS = "juegos.json"        # archivo de juegos
 
 # ── Aplicación ─────────────────────────────────────────────────────────────
 APP_NAME: str = "ZonaVRLauncher"
@@ -38,4 +41,17 @@ RACING_EXTEND_OPTIONS: list[int] = [
 COLA_TURN_DURATION: int = 10 * 60
 COLA_SYNC_INTERVAL_MS: int = 1000    # cada cuánto se refresca la pantalla cliente
 
-# prueba
+
+# Funcion que inserta un "Juego" en un archivo
+def insertarJuegos(juego):
+    juegos = open(JUEGOS, "w", encoding="utf-8")
+    juegos = juegos.write(juego)
+    juegos.close()
+
+
+# Funcion que lee los "Juegos" de un archivo
+def leerJuegos():
+    juegos = open(JUEGOS, "r", encoding="utf-8")
+    juegos = juegos.read()
+    juegos.close()
+    return juegos
