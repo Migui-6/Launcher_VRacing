@@ -1,3 +1,5 @@
+from io import open
+
 # ── Rutas ──────────────────────────────────────────────────────────────────
 # APP_DIR: Path          # directorio del ejecutable
 # DATA_DIR: Path         # datos persistentes (JSON, logs)
@@ -38,4 +40,17 @@ RACING_EXTEND_OPTIONS: list[int] = [
 COLA_TURN_DURATION: int = 10 * 60
 COLA_SYNC_INTERVAL_MS: int = 1000    # cada cuánto se refresca la pantalla cliente
 
-# prueba
+
+# Funcion que inserta un "Juego" en un archivo
+def insertarJuegos(juego):
+    juegos = open("juegos.json", "w")
+    juegos = juegos.write(juego)
+    juegos.close()
+
+
+# Funcion que lee los "Juegos" de un archivo
+def leerJuegos():
+    juegos = open("juegos.json", "r")
+    juegos = juegos.read()
+    juegos.close()
+    return juegos
